@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+	reactStrictMode: true,
+	compiler: {
+		styledComponents: true,
+	},
 
-module.exports = nextConfig
+	images: {
+		domains: ["icon-library.com"],
+		formats: ["image/avif", "image/webp"],
+	},
+};
+
+module.exports = nextConfig;
