@@ -91,7 +91,7 @@ export const ImageWrapper = styled.figure`
 	padding: 0;
 	height: 100%;
 
-	width: 5rem;
+	width: 8rem;
 	position: relative;
 	border-radius: ${({ theme: { borderRadius } }) => borderRadius.md};
 
@@ -99,7 +99,7 @@ export const ImageWrapper = styled.figure`
 		width: 15rem;
 	}
 	@media screen and (min-width: 550px) {
-		width: 10rem;
+		width: 15rem;
 	}
 `;
 
@@ -109,6 +109,7 @@ export const Picture = styled(Image)`
 	width: 100%;
 	background: ${({ theme: { colors } }) => colors.primary.light};
 	border-radius: ${({ theme: { borderRadius } }) => borderRadius.md};
+	object-fit: cover;
 `;
 
 export const InfoText = styled.p`

@@ -1,36 +1,13 @@
-import { Blog, SideBar, TopBar } from "components";
 import type { NextPage } from "next";
-import Head from "next/head";
-import * as Styled from "styles/Index.elements";
+import { signIn, useSession } from "next-auth/react";
+import Home from "./Home";
 
-const Home: NextPage = () => {
-	return (
-		<>
-			<Head>
-				<title>Blog App</title>
-				<meta name="description" content="A place to start writing your blogs" />
-			</Head>
-			<Styled.Main>
-				<SideBar />
-				<Styled.Content>
-					<TopBar />
-					<Styled.Blogs>
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-						<Blog />
-					</Styled.Blogs>
-				</Styled.Content>
-			</Styled.Main>
-		</>
-	);
+const Index: NextPage = () => {
+	const { data: session } = useSession();
+	const handleSignIn = () => {
+		signIn();
+	};
+	return <>{session ? <Home /> : <button onClick={handleSignIn}>Sign In</button>}</>;
 };
 
-export default Home;
+export default Index;

@@ -1,23 +1,57 @@
-import React, { FunctionComponent } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { fireStore, storage } from "myFirebase";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import * as Styled from "styles/NewBlog.elements";
-import { createReactEditorJS } from "react-editor-js";
-import Header from "@editorjs/header";
-import List from "@editorjs/list";
-import Image from "@editorjs/image";
-
+import Editor from "./Editor";
+import LoadingButton from "./LoadingButton";
 const NewBlog: FunctionComponent = () => {
-	const tools = {
-		header: Header,
-		list: List,
-		image: Image,
+	let editorRef = useRef<HTMLElement>(null).current;
+	const [value, setValue] = useState<string>("");
+	const [blogHeading, setBlogHeading] = useState<string>();
+	// const [blogTitle, setBlogTitle] = useState<string>();
+	const [blogThumb, setBlogThumb] = useState<string>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const router = useRouter();
+
+	const { data } = useSession();
+
+	const saveBlog = async () => {
+		if (value.length > 5) {
+			setIsLoading(true);
+			// const uploadImage = (
+			// 	await uploadString(ref(storage, Date.now().toString()), blogThumb, "data_url")
+			// ).ref;
+			// const uploadedImage = await getDownloadURL(uploadImage);
+
+			await addDoc(collection(fireStore, "blogs"), {
+				data: value,
+				username: data?.user?.name,
+				avatar: data?.user?.image,
+				createdAt: Date.now(),
+				blogHeading,
+			}).then(() => {
+				setIsLoading(false);
+				router.push("/");
+			});
+		}
 	};
-	const Editor = createReactEditorJS();
+
+	useEffect(() => {
+		setBlogHeading(editorRef?.querySelector("h1")?.innerText);
+		setBlogThumb(editorRef?.querySelector("img")?.src);
+		editorRef?.scroll();
+	}, [value, editorRef]);
+
 	return (
-		<Styled.Wrapper>
+		<Styled.Wrapper ref={(ref) => (editorRef = ref)}>
 			<Styled.Header>
-				<Styled.Button>Publish</Styled.Button>
+				<LoadingButton text="Publish" isLoading={isLoading} onClick={saveBlog} />
 			</Styled.Header>
-			<Editor tools={tools} />
+			<Editor value={value} setValue={setValue} />
 		</Styled.Wrapper>
 	);
 };

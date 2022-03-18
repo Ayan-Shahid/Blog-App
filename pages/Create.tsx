@@ -1,13 +1,20 @@
 import { NewBlog, SideBar } from "components";
-import React, { FunctionComponent } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
+import React from "react";
 import * as Styled from "styles/Create.elements";
 
-const Create: FunctionComponent = () => {
+const Create: NextPage = () => {
 	return (
-		<Styled.Wrapper>
-			<SideBar />
-			<NewBlog />
-		</Styled.Wrapper>
+		<>
+			<Head>
+				<title>Blog App</title>
+			</Head>
+			<Styled.Wrapper>
+				<SideBar />
+				<NewBlog />
+			</Styled.Wrapper>
+		</>
 	);
 };
 

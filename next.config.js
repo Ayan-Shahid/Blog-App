@@ -6,7 +6,7 @@ const nextConfig = {
 	},
 
 	images: {
-		domains: ["icon-library.com"],
+		domains: ["icon-library.com", "lh3.googleusercontent.com", "firebasestorage.googleapis.com"],
 		formats: ["image/avif", "image/webp"],
 	},
 };

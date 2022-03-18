@@ -17,24 +17,29 @@ export const Main = styled.main`
 `;
 
 export const Blogs = styled.section`
-	padding: 2rem 2rem;
 	gap: 4rem;
 	display: flex;
 	flex-direction: column;
-	height: 70%;
+	height: 80%;
 
 	overflow: scroll;
+`;
+
+export const Content = styled.section`
+	padding: 2rem 2rem;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	gap: 1rem;
 	@media screen and (min-width: 900px) {
-		padding: 1rem 10rem 5rem 10rem;
+		padding: 0 10rem;
 		height: 78%;
 	}
 `;
 
-export const Content = styled.section`
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	width: 100%;
-
-	gap: 1rem;
+export const Title = styled.h2`
+	font-size: ${({ theme: { fontSizes } }) => fontSizes.xl};
+	color: ${({ theme: { colors } }) => colors.secondary.default};
 `;

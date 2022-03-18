@@ -14,13 +14,3 @@ export const Header = styled.header`
 	display: flex;
 	justify-content: flex-end;
 `;
-
-export const Button = styled.button`
-	background: ${({ theme: { colors } }) => colors.primary.default};
-	color: ${({ theme: { colors } }) => colors.secondary.default};
-	font-size: ${({ theme: { fontSizes } }) => fontSizes.md};
-	padding: 1rem;
-	border-radius: ${({ theme: { borderRadius } }) => borderRadius.md};
-`;
-
-export const Editor = styled.section``;
