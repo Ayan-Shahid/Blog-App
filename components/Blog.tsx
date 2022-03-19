@@ -1,7 +1,6 @@
 import moment from "moment";
 import Link from "next/link";
 import React, { FunctionComponent } from "react";
-import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { useTheme } from "styled-components";
 import * as Styled from "styles/Blog.elements";
 import * as Shared from "styles/Shared.elements";
@@ -12,7 +11,6 @@ interface IBlog {
 	id?: string;
 	username?: string;
 	avatar?: string;
-	blogTitle?: string;
 	blogHeading?: string;
 	createdAt?: number;
 	blogThumb?: string;
@@ -22,7 +20,6 @@ const Blog: FunctionComponent<IBlog> = ({
 	id,
 	username,
 	avatar,
-	blogTitle,
 	blogHeading,
 	createdAt,
 	blogThumb,
@@ -45,17 +42,12 @@ const Blog: FunctionComponent<IBlog> = ({
 							</Shared.Text>
 						</Styled.Header>
 						<Styled.Title>{blogHeading}</Styled.Title>
-						<Styled.InfoText>{blogTitle}</Styled.InfoText>
 						<Shared.Row width="100%" justifyContent="space-between">
 							<Styled.Footer>
-								<Styled.Tag>JavaScript</Styled.Tag>
 								<Shared.Text weight={500} color="#777">
 									5 min read
 								</Shared.Text>
 							</Styled.Footer>
-							<Styled.Icon>
-								<BsFillBookmarkPlusFill />
-							</Styled.Icon>
 						</Shared.Row>
 					</Styled.Column>
 					<Styled.ImageWrapper>

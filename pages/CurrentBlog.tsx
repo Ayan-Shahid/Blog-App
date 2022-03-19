@@ -87,7 +87,6 @@ const CurrentBlog: NextPage = () => {
 		let isMounted = true;
 
 		if (isMounted) {
-			getData();
 			getComments();
 		}
 
@@ -95,6 +94,17 @@ const CurrentBlog: NextPage = () => {
 			isMounted = false;
 		};
 	}, [addComment]);
+	useEffect(() => {
+		let isMounted = true;
+
+		if (isMounted) {
+			getData();
+		}
+
+		return () => {
+			isMounted = false;
+		};
+	}, []);
 
 	return (
 		<Styled.Wrapper>

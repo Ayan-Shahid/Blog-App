@@ -20,12 +20,12 @@ const NewBlog: FunctionComponent = () => {
 	const { data } = useSession();
 
 	const saveBlog = async () => {
-		if (value.length > 5) {
+		if (value.length > 5 && blogThumb) {
 			setIsLoading(true);
-			// const uploadImage = (
-			// 	await uploadString(ref(storage, Date.now().toString()), blogThumb, "data_url")
-			// ).ref;
-			// const uploadedImage = await getDownloadURL(uploadImage);
+			const uploadImage = (
+				await uploadString(ref(storage, Date.now().toString()), blogThumb, "data_url")
+			).ref;
+			const uploadedImage = await getDownloadURL(uploadImage);
 
 			await addDoc(collection(fireStore, "blogs"), {
 				data: value,
@@ -33,6 +33,7 @@ const NewBlog: FunctionComponent = () => {
 				avatar: data?.user?.image,
 				createdAt: Date.now(),
 				blogHeading,
+				blogThumb: uploadedImage,
 			}).then(() => {
 				setIsLoading(false);
 				router.push("/");

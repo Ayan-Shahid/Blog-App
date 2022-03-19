@@ -38,3 +38,46 @@ export const Content = styled.section`
 
 	gap: 1rem;
 `;
+
+export const LoginWrapper = styled.main`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100%;
+
+	background: ${({ theme: { colors } }) => colors.primary.dark};
+`;
+
+export const SignInButton = styled.button`
+	padding: 1rem 2rem;
+	border-radius: ${({ theme: { borderRadius } }) => borderRadius.sm};
+	transition: 0.2s;
+	background: ${({ theme: { colors } }) => colors.primary.default};
+	color: ${({ theme: { colors } }) => colors.secondary.default};
+
+	&:hover {
+		transform: scale(1.1);
+	}
+	&:active {
+		transform: scale(1);
+	}
+`;
+
+export const Loader = styled.span`
+	height: 2rem;
+	width: 2rem;
+	border-radius: ${({ theme: { borderRadius } }) => borderRadius.full};
+	background: none;
+	border: 0.2rem solid ${({ theme: { colors } }) => colors.primary.light};
+	border-top: 0.2rem solid ${({ theme: { colors } }) => colors.secondary.default};
+	animation: spin 1s infinite linear;
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+`;

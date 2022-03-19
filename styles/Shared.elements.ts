@@ -49,3 +49,21 @@ export const Text = styled.p<IStyles>`
 	font-weight: ${({ weight }) => weight};
 	user-select: none;
 `;
+
+export const Loader = styled.span`
+	height: 1.5rem;
+	width: 1.5rem;
+	border-radius: ${({ theme: { borderRadius } }) => borderRadius.full};
+	background: none;
+	border: 0.2rem solid ${({ theme: { colors } }) => colors.primary.light};
+	border-top: 0.2rem solid ${({ theme: { colors } }) => colors.secondary.default};
+	animation: spin 1s infinite linear;
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+`;
